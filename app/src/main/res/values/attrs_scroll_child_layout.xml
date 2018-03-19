@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--在使用MVVM模式中,使用Databinding,RecyclerView需要用到的属性-->
+    <declare-styleable name="ScrollChildSwipeRefreshLayout">
+        <attr name="refreshing" format="boolean"/>
+    </declare-styleable>
+
+</resources>

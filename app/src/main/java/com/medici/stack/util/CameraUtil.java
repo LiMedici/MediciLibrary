@@ -19,36 +19,19 @@ public class CameraUtil {
 
     private CameraSizeComparator sizeComparator = new CameraSizeComparator();
 
-    private static CameraUtil mCameraUtil = null;
-
-    private CameraUtil(){}
-
-    public static CameraUtil getInstance(){
-        if(mCameraUtil == null){
-            mCameraUtil = CameraUtilHolder.mCameraUtil;
-        }
-        return mCameraUtil;
-    }
-
-    /**
-     * 返回单例的实例
-     */
-    private static class CameraUtilHolder{
-        public static final CameraUtil mCameraUtil = new CameraUtil();
-    }
-
     /**
      * 返回合适尺寸的预览大小
-     * @param list
-     * @param th
-     * @return
+     * @param list Camera支持预览大小的集合 width > height
+     * @param width width 大小
+     * @return 返回一个最贴近的Size
      */
-    public Size getPreviewSize(List<Size> list, int th){
+    public Size getPreviewSize(List<Size> list, int width){
+        //先按排序规则排序
         Collections.sort(list, sizeComparator);
 
         int i = 0;
         for(Size size:list){
-            if((size.width >= th) && equalRate(size, 1.55f)){
+            if((size.width >= width) && equalRate(size, 1.55f)){
                 Logger.w("最终设置预览尺寸:w = " + size.width + "h = " + size.height);
                 break;
             }
@@ -60,16 +43,17 @@ public class CameraUtil {
 
     /**
      * 返回合适尺寸的图片拍照大小
-     * @param list
-     * @param th
-     * @return
+     * @param list Camera支持预览大小的集合 width > height
+     * @param width width
+     * @return 返回一个最贴近的Size
      */
-    public Size getPictureSize(List<Size> list, int th){
+    public Size getPictureSize(List<Size> list, int width){
+        //先按排序规则排序
         Collections.sort(list, sizeComparator);
 
         int i = 0;
         for(Size size:list){
-            if((size.width >= th) && equalRate(size, 1.55f)){
+            if((size.width >= width) && equalRate(size, 1.55f)){
                 Logger.w("最终设置图片尺寸:w = " + size.width + "h = " + size.height);
                 break;
             }
@@ -98,7 +82,14 @@ public class CameraUtil {
      * 比较规则
      */
     public static class CameraSizeComparator implements Comparator<Size> {
-        //按升序排列
+
+        @Override
+        /**
+         * 按升序排列
+         * @param lhs
+         * @param rhs
+         * @return
+         */
         public int compare(Size lhs, Size rhs) {
             if(lhs.width == rhs.width){
                 return 0;

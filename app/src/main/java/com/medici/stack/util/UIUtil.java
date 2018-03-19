@@ -1,30 +1,37 @@
 package com.medici.stack.util;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.cnbi.ic9.Ic9ClientApp;
+import com.medici.stack.util.blankj.ToastUtil;
+import com.medici.stack.R;
+import com.medici.stack.app.Application;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author cnbilzh
+ * @time 2017/12/05 15:29
+ * @desc UI相关的功能方法
+ */
 public final class UIUtil {
-	@SuppressLint("StaticFieldLeak")
+
 	private static Application application;
 
 	private static WeakReference<Activity> topActivityWeakRef;
@@ -72,15 +79,15 @@ public final class UIUtil {
 	}
 
 	public static Context getContext() {
-		return Ic9ClientApp.getApplication();
+		return Application.getApplication();
 	}
 
 	public static Thread getMainThread() {
-		return Ic9ClientApp.getMainThread();
+		return Application.getMainThread();
 	}
 
 	public static long getMainThreadId() {
-		return Ic9ClientApp.getMainThreadId();
+		return Application.getMainThreadId();
 	}
 
 	private static Application.ActivityLifecycleCallbacks mCallback = new Application.ActivityLifecycleCallbacks() {
@@ -123,14 +130,14 @@ public final class UIUtil {
 
 
 
-	/*获取RefWathcer检查内存是否泄露*/
+	/** 获取RefWathcer检查内存是否泄露 */
 	public static RefWatcher getRefWathcher(){
-		return Ic9ClientApp.getRefWatcher();
+		return Application.getRefWatcher();
 	}
 
 	/** 获取主线程的handler */
 	public static Handler getHandler() {
-		return Ic9ClientApp.getMainThreadHandler();
+		return Application.getMainThreadHandler();
 	}
 
 	/** 延时在主线程执行runnable */
@@ -183,10 +190,15 @@ public final class UIUtil {
 	}
 
 	/** 获取颜色选择器*/
-	public static ColorStateList getColorStateList(int resId) {
-		return getResources().getColorStateList(resId);
+	@RequiresApi(api = Build.VERSION_CODES.M)
+    public static ColorStateList getColorStateList(int resId) {
+		return getResources().getColorStateList(resId,null);
 	}
-	//判断当前的线程是不是在主线程
+
+	/**
+	 * 判断当前的线程是不是在主线程
+	 * @return
+	 */
 	public static boolean isRunInMainThread() {
 		return android.os.Process.myTid() == getMainThreadId();
 	}
@@ -214,19 +226,22 @@ public final class UIUtil {
 		showToastSafe(getString(resId));
 	}
 
-	/** 对toast的简易封装线程安全，可以在非UI线程调用*/
-	public static void showToastSafe(final String str) {
-		if (isRunInMainThread()) {
-			showToast(str);
-		} else {
-			post(new Runnable() {
-				@Override
-				public void run() {
-					showToast(str);
-				}
-			});
-		}
-	}
+    /**
+     * 对toast的简易封装线程安全，可以在非UI线程调用
+     */
+    public static void showToastSafe(final String str) {
+    	ToastUtil.setBgColor(getColor(R.color.black_alpha_192));
+        if (isRunInMainThread()) {
+            ToastUtil.showShort(str);
+        } else {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtil.showShort(str);
+                }
+            });
+        }
+    }
 
 	private static void showToast(String str) {
 		Activity frontActivity = (Activity) getTopActivity();

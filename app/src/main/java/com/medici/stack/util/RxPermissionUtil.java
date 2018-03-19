@@ -7,10 +7,9 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 
-import com.cnbi.ic9.util.tool.blankj.ActivityUtil;
-import com.cnbi.ic9.util.tool.blankj.IntentUtil;
-import com.cnbi.ic9.util.tool.blankj.SpanUtil;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.medici.stack.util.blankj.ActivityUtil;
+import com.medici.stack.util.blankj.IntentUtil;
+import com.medici.stack.util.blankj.SpanUtil;
 
 /**
  * 
@@ -21,15 +20,18 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
  */
 public final class RxPermissionUtil {
 
-	// 私有化构造函数
+	/**
+	 * 私有化构造函数
+	 */
 	private RxPermissionUtil() {
 
 	}
 
+	/**
 	public static RxPermissions getInstance(Activity mActivity) {
 		RxPermissions rxPermissions = new RxPermissions(mActivity);
 		return rxPermissions;
-	}
+	}*/
 
 	/**
 	 * 跳转到应用设置详情页面

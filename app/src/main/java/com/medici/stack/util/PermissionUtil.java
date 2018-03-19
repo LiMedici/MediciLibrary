@@ -9,27 +9,38 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.cnbi.ic9.util.tool.blankj.ActivityUtil;
-import com.cnbi.ic9.util.tool.blankj.IntentUtil;
+import com.medici.stack.util.blankj.ActivityUtil;
+import com.medici.stack.util.blankj.IntentUtil;
 
 /**
  * 
- * @desc 申请权限的Util
+ * @desc 申请权限的Util 充满限制 只能对许多Permisson的拒绝返回一种Content描述
  * @author 李宗好
  * @time:2016年12月28日 下午2:30:00
  *
  */
 public final class PermissionUtil {
-	//util对象
+	/**
+	 * util对象
+	 */
 	private static PermissionUtil INSTANCE = null;
-	//请求权限的Activity
+
+	/**
+	 * 请求权限的Activity
+	 */
 	private Activity mActivity;
 
+	/**
+	 * 显示被狠心拒绝后显示的文本
+	 */
 	private String content;
 	
 	private IRequestPermissionListener mListener;
 
-	// 私有化构造函数
+	/**
+	 * 私有化构造函数
+	 * @param mActivity
+	 */
 	private PermissionUtil(Activity mActivity) {
 		this.mActivity = mActivity;
 	}
@@ -69,7 +80,7 @@ public final class PermissionUtil {
 	 * @param listener 请求回调
      */
 	public void requestPermission(@NonNull final String[] permissions, @NonNull final String content,
-								  final int requestCode, @NonNull IRequestPermissionListener listener) {
+                                  final int requestCode, @NonNull IRequestPermissionListener listener) {
 
 		this.content = content;
 		setIRequestPermissionListener(listener);
@@ -98,7 +109,9 @@ public final class PermissionUtil {
 				// Permission Denied 请求权限失败
 				boolean isTip = ActivityCompat.shouldShowRequestPermissionRationale(mActivity,
 						permissions[i]);
-				if (!isTip) {// 表明用户彻底禁止弹窗请求。
+
+				// 表明用户彻底禁止弹窗请求。
+				if (!isTip) {
 					// 提示用户进入用户权限设置
 					if(mListener!=null){
 						mListener.result(permissions[i], content, false, isTip);
@@ -110,12 +123,13 @@ public final class PermissionUtil {
 	
 	/**
 	 * 是否已经取得权限
-	 * 
+
 	 * @return true false
 	 */
 	public boolean isHavePermission(String permission) {
 		int hasReadExternalStoragePermission = ContextCompat.checkSelfPermission(mActivity, permission);
-		if (hasReadExternalStoragePermission == PackageManager.PERMISSION_GRANTED) {// 已经取得该权限
+		// 已经取得该权限
+		if (hasReadExternalStoragePermission == PackageManager.PERMISSION_GRANTED) {
 			return true;
 		}
 		return false;
@@ -126,11 +140,18 @@ public final class PermissionUtil {
 	 * @param listener
 	 */
 	private void setIRequestPermissionListener(IRequestPermissionListener listener) {
-		// TODO Auto-generated method stub
 		this.mListener = listener;
 	}
 	
 	public interface IRequestPermissionListener{
+
+		/**
+		 * 回调请求结果
+		 * @param permission 请求的权限
+		 * @param content    请求被狠心拒绝后显示的文本
+		 * @param isSuccess  是否获取权限
+		 * @param isTip  是否被狠心拒绝
+		 */
 		void result(String permission, String content, boolean isSuccess, boolean isTip);
 	}
 }

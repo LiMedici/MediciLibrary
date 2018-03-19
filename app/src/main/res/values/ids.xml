@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Toolbar的默认id名-->
+    <item name="toolbar" type="id" />
+    <!--recycler封装的tag属性-->
+    <item name="tag_recycler_holder" type="id" />
+    <!--默认头像的drawable名字-->
+    <item name="default_portrait" type="drawable" />
+
+    <!--Toolbar home的名字-->
+    <item name="ic_back" type="drawable" />
+
+    <!--StatusBarUtil需要的Id-->
+    <item type="id" name="status_bar_util_fake_status_bar_view" />
+    <item type="id" name="status_bar_util_translucent_view" />
+
+    <!--自定义Dialog动画帧数资源的id定义-->
+    <item type="drawable" name="custom_loading_frame_1"></item>
+    <item type="drawable" name="custom_loading_frame_2"></item>
+    <item type="drawable" name="custom_loading_frame_3"></item>
+    <item type="drawable" name="custom_loading_frame_4"></item>
+    <item type="drawable" name="custom_loading_frame_5"></item>
+    <item type="drawable" name="custom_loading_frame_6"></item>
+    <item type="drawable" name="custom_loading_frame_7"></item>
+    <item type="drawable" name="custom_loading_frame_8"></item>
+    <item type="drawable" name="custom_loading_frame_9"></item>
+    <item type="drawable" name="custom_loading_frame_10"></item>
+    <item type="drawable" name="custom_loading_frame_11"></item>
+    <item type="drawable" name="custom_loading_frame_12"></item>
+    <item type="drawable" name="custom_loading_frame_13"></item>
+    <item type="drawable" name="custom_loading_frame_14"></item>
+    <item type="drawable" name="custom_loading_frame_15"></item>
+    <item type="drawable" name="custom_loading_frame_16"></item>
+    <item type="drawable" name="custom_loading_frame_17"></item>
+    <item type="drawable" name="custom_loading_frame_18"></item>
+    <item type="drawable" name="custom_loading_frame_19"></item>
+    <item type="drawable" name="custom_loading_frame_20"></item>
+    <item type="drawable" name="custom_loading_frame_21"></item>
+    <item type="drawable" name="custom_loading_frame_22"></item>
+    <item type="drawable" name="custom_loading_frame_23"></item>
+    <item type="drawable" name="custom_loading_frame_24"></item>
+    <item type="drawable" name="custom_loading_frame_25"></item>
+    <item type="drawable" name="custom_loading_frame_26"></item>
+    <item type="drawable" name="custom_loading_frame_27"></item>
+    <item type="drawable" name="custom_loading_frame_28"></item>
+    <item type="drawable" name="custom_loading_frame_29"></item>
+</resources>

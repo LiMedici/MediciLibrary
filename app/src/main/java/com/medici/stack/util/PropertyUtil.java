@@ -9,13 +9,12 @@ import java.util.Properties;
  */
 public class PropertyUtil {
 	
-	public static Properties loadProperties(String name, String defType) {
+	public static Properties loadProperties(String name,String defType) {
         Properties props = new Properties();
         int id = UIUtil.getResources().getIdentifier(name, defType, UIUtil.getContext().getPackageName());
         try {
 			props.load(UIUtil.getResources().openRawResource(id));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return props;

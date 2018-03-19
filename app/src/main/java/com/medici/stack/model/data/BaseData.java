@@ -14,7 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.medici.stack.util.UIUtil;
 
 /**
- * Activity基类数据
+ * @author medici
+ * @desc Activity基类数据实体 MVC模式中推荐使用
  */
 public class BaseData {
 

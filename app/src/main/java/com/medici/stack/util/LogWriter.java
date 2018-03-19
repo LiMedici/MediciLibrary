@@ -25,8 +25,8 @@ public class LogWriter {
 	private static SimpleDateFormat df;
 
 	private LogWriter(String path) {
-		this.mPath = path;
-		this.mWriter = null;
+		mPath = path;
+		mWriter = null;
 	}
 
 	/**

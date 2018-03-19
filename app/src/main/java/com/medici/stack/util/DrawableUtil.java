@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.cnbi.ic9.util.tool.blankj.SizeUtil;
+import com.medici.stack.util.blankj.SizeUtil;
 
 import java.lang.reflect.Field;
 
@@ -38,9 +38,9 @@ public class DrawableUtil {
 	 */
 	public static GradientDrawable createDrawable(int contentColor, int strokeColor, int radius) {
 		// 生成Shape
-		GradientDrawable drawable = new GradientDrawable();
+		GradientDrawable drawable = new GradientDrawable(); 
 		// 设置矩形
-		drawable.setGradientType(GradientDrawable.RECTANGLE);
+		drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
 		// 内容区域的颜色
 		drawable.setColor(contentColor);
 		// 四周描边,描边后四角真正为圆角，不会出现黑色阴影,如果父窗体是可以滑动的,就把父View设置setScrollCache(false)
@@ -83,7 +83,11 @@ public class DrawableUtil {
 		return bg;
 	}
 
-	/** 获取图片的大小*/
+	/**
+	 * 获取Drawable 对象的占内存大小
+	 * @param drawable
+	 * @return
+	 */
 	public static int getDrawableSize(Drawable drawable) {
 		if (drawable == null) {
 			return 0;
@@ -105,17 +109,17 @@ public class DrawableUtil {
 	public static Bitmap makeRoundCorner(Bitmap bitmap, int px){
 		  int width = bitmap.getWidth(); 
 		  int height = bitmap.getHeight(); 
-		  Bitmap output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-		  Canvas canvas = new Canvas(output);
+		  Bitmap output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); 
+		  Canvas canvas = new Canvas(output); 
 		  int color = 0xff424242; 
-		  Paint paint = new Paint();
-		  Rect rect = new Rect(0, 0, width, height);
-		  RectF rectF = new RectF(rect);
+		  Paint paint = new Paint(); 
+		  Rect rect = new Rect(0, 0, width, height); 
+		  RectF rectF = new RectF(rect); 
 		  paint.setAntiAlias(true); 
 		  canvas.drawARGB(0, 0, 0, 0); 
 		  paint.setColor(color); 
 		  canvas.drawRoundRect(rectF, px, px, paint); 
-		  paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+		  paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN)); 
 		  canvas.drawBitmap(bitmap, rect, rect, paint); 
 		  return output; 
 	}

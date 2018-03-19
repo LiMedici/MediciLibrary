@@ -3,20 +3,26 @@ package com.medici.stack.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cnbi.ic9.R;
-import com.orhanobut.logger.Logger;
+import com.medici.stack.R;
 
 /**
- * @Desc DialogUtil
- * @author 李宗好
+ * @Desc DialogUtil 弹窗遮罩的作用
+ * @author cnbilzh
  * @time:2017年2月22日下午2:23:41
  */
 public class DialogUtil {
 
-	private static AlertDialog dialog;
+	private static AlertDialog mLoadingDialog;
+
+	private static com.medici.stack.ui.ProgressDialog mCustomDialog;
 
 	/**
 	 * 创建dialog 显示dialog
@@ -29,27 +35,89 @@ public class DialogUtil {
 			TextView loadingText = (TextView) view.findViewById(R.id.loading_text);
 			loadingText.setText(text);
 			AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-			dialog = builder.create();
-			dialog.setView(view);
+			mLoadingDialog = builder.create();
+			mLoadingDialog.setView(view);
 			//不可取消
-			dialog.setCancelable(false);
+			mLoadingDialog.setCancelable(false);
+			mLoadingDialog.show();
+		}
+	}
+
+	/**
+	 * 创建ProcessDialog 显示创建ProcessDialog
+	 * @param mActivity 上下文,dialog依附的窗体
+	 * @param theme 		dialog主题
+	 */
+	public static void showDialog(Activity mActivity, @StyleRes int theme) {
+		if(!isShowing()){
+			ProgressDialog dialog = new ProgressDialog(mActivity,theme);
+			if (dialog == null) {
+				dialog = new ProgressDialog(mActivity, R.style.AppTheme_Dialog_Alert_Light);
+				// 不可触摸取消
+				dialog.setCanceledOnTouchOutside(false);
+				// 强制取消关闭界面
+				dialog.setCancelable(true);
+				dialog.setOnCancelListener(dialogInterface->mActivity.finish());
+				mLoadingDialog = dialog;
+			}
+
+			dialog.setMessage(UIUtil.getString(R.string.prompt_loading));
 			dialog.show();
 		}
-
 	}
-	
+
+
+	/**
+	 * 创建自定义的Dialog 显示创建自定义Dialog
+	 * @param mActivity 上下文,dialog依附的窗体
+	 * @param stringRes String资源
+	 */
+	public static void showDialog(FragmentActivity mActivity, @StringRes int stringRes) {
+		// showDialog 关闭之前的Dialog
+		DialogUtil.closeDialog();
+		String desc = UIUtil.getString(stringRes);
+		Bundle mBundle = new Bundle();
+		mBundle.putString(com.medici.stack.ui.ProgressDialog.LOADING_DESC,desc);
+		if(null == mCustomDialog){
+			mCustomDialog = com.medici.stack.ui.ProgressDialog.show(mActivity.getSupportFragmentManager(),mBundle);
+		}
+	}
+
+	/**
+	 * 创建自定义的Dialog 显示创建自定义Dialog
+	 * @param mActivity 上下文,dialog依附的窗体
+	 */
+	public static void showDialog(FragmentActivity mActivity) {
+		if(null == mCustomDialog){
+			// 设置一个干净的Bundle
+			Bundle mBundle = new Bundle();
+			mCustomDialog = com.medici.stack.ui.ProgressDialog.show(mActivity.getSupportFragmentManager(),mBundle);
+		}
+	}
+
+	/**
+	 * ProgressDialog 与 custom view Dialog
+	 * @return
+	 */
 	public static boolean isShowing(){
-		if(null == dialog) return false;
-		return dialog.isShowing();
+		if(null == mLoadingDialog) return false;
+		return mLoadingDialog.isShowing();
 	}
 
+
+	/**
+	 * 关闭Dialog
+	 */
 	public static void closeDialog() {
-		if(null != dialog){
-			if (dialog.isShowing()) {
-				Logger.w("是谁调用的呢 "+dialog.getContext().toString());
-				dialog.dismiss();
+		if(null != mLoadingDialog){
+			if (mLoadingDialog.isShowing()) {
+				mLoadingDialog.dismiss();
 			}
-			dialog = null;
+			mLoadingDialog = null;
+		}else if(null != mCustomDialog){
+			// 关闭自定义的Dialog
+			mCustomDialog.dismiss();
+			mCustomDialog = null;
 		}
 	}
 }

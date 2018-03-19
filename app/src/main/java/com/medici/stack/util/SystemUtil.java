@@ -1,5 +1,6 @@
 package com.medici.stack.util;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -7,11 +8,12 @@ import android.content.res.Configuration;
 import android.os.Debug;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
-import com.cnbi.ic9.util.tool.blankj.StringUtil;
+import com.medici.stack.util.blankj.StringUtil;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -30,7 +32,7 @@ public final class SystemUtil {
 
 	/** 获取android系统版本**/
 	public static String getOSVersion() {
-		String release = android.os.Build.VERSION.RELEASE; // android系统版本
+		String release = android.os.Build.VERSION.RELEASE;
 		release = "android" + release;
 		return release;
 	}
@@ -50,10 +52,10 @@ public final class SystemUtil {
 	 * @param context 
 	 * @return 平板返回 True，手机返回 False 
 	 */  
-	public static boolean isPad(Context context) {
+	public static boolean isPad(Context context) {  
 	    return (context.getResources().getConfiguration().screenLayout  
-	            & Configuration.SCREENLAYOUT_SIZE_MASK)
-	            >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+	            & Configuration.SCREENLAYOUT_SIZE_MASK)  
+	            >= Configuration.SCREENLAYOUT_SIZE_LARGE;  
 	}
 
 	/** 判断手机是否已插入SIM卡*/
@@ -81,32 +83,29 @@ public final class SystemUtil {
 		return false;
 	}
 
-	/** 取得当前sim手机卡的imsi */
+	/**
+	 * 取得当前sim手机卡的IMSI
+	 * @return
+	 */
+	@RequiresPermission(Manifest.permission.READ_PHONE_STATE)
 	public static String getIMSI() {
 		Context context = UIUtil.getContext();
-		if (null == context) {
-			return null;
-		}
-		String imsi = null;
 		try {
 			TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-			imsi = tm.getSubscriberId();
+			String imsi = tm.getSubscriberId();
+			return imsi;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return imsi;
+		return null;
 	}
 
 	/** 返回本地手机号码，这个号码不能获取到 */
 	public static String getNativePhoneNumber() {
 		Context context = UIUtil.getContext();
-		if (null == context) {
-			return null;
-		}
 		TelephonyManager telephonyManager;
 		telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-		String NativePhoneNumber = null;
-		NativePhoneNumber = telephonyManager.getLine1Number();
+		String NativePhoneNumber = telephonyManager.getLine1Number();
 		return NativePhoneNumber;
 	}
 
@@ -131,47 +130,26 @@ public final class SystemUtil {
 	/** 获取当前设备的SN */
 	public static String getSimSN() {
 		Context context = UIUtil.getContext();
-		if (null == context) {
-			return null;
-		}
-		String simSN = null;
 		try {
 			TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-			simSN = tm.getSimSerialNumber();
+			String simSN = tm.getSimSerialNumber();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return simSN;
+		return null;
 	}
 
 	/** 获得设备的横向dpi */
 	public static float getWidthDpi() {
 		Context context = UIUtil.getContext();
-		if (null == context) {
-			return 0;
-		}
-		DisplayMetrics dm = null;
-		try {
-			if (context != null) {
-				dm = new DisplayMetrics();
-				dm = context.getApplicationContext().getResources().getDisplayMetrics();
-			}
-
-			return dm.densityDpi;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
+		DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
+		return dm.densityDpi;
 	}
 
 	/** 获得设备的纵向dpi */
 	public static float getHeightDpi() {
 		Context context = UIUtil.getContext();
-		if (null == context) {
-			return 0;
-		}
-		DisplayMetrics dm = new DisplayMetrics();
-		dm = context.getApplicationContext().getResources().getDisplayMetrics();
+		DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
 		return dm.ydpi;
 	}
 
@@ -300,16 +278,16 @@ public final class SystemUtil {
 		PackageManager pm = context.getPackageManager();
 		String[] libNames = pm.getSystemSharedLibraryNames();
 		List<String> listLibNames = Arrays.asList(libNames);
-//		LogUtils.d("SystemLibs: " + listLibNames);
 		return listLibNames;
 	}
 
 	/** 获取手机外部可用空间大小，单位为byte */
 	public static long getExternalTotalSpace() {
 		long totalSpace = -1L;
-		if (FileUtil.isSDCardAvailable()) {
+		if (FileUtil.isMediaMounted()) {
 			try {
-				String path = Environment.getExternalStorageDirectory().getPath();// 获取外部存储目录�?SDCard
+				// 获取外部存储目录
+				String path = Environment.getExternalStorageDirectory().getPath();
 				StatFs stat = new StatFs(path);
 				long blockSize = stat.getBlockSize();
 				long totalBlocks = stat.getBlockCount();
@@ -324,7 +302,7 @@ public final class SystemUtil {
 	/** 获取外部存储可用空间，单位为byte */
 	public static long getExternalSpace() {
 		long availableSpace = -1L;
-		if (FileUtil.isSDCardAvailable()) {
+		if (FileUtil.isMediaMounted()) {
 			try {
 				String path = Environment.getExternalStorageDirectory().getPath();
 				StatFs stat = new StatFs(path);
@@ -340,10 +318,11 @@ public final class SystemUtil {
 	public static long getTotalInternalSpace() {
 		long totalSpace = -1L;
 		try {
+			// 获取该区域可用的文件系统
 			String path = Environment.getDataDirectory().getPath();
 			StatFs stat = new StatFs(path);
 			long blockSize = stat.getBlockSize();
-			long totalBlocks = stat.getBlockCount();// 获取该区域可用的文件系统�?
+			long totalBlocks = stat.getBlockCount();
 			totalSpace = totalBlocks * blockSize;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -355,10 +334,13 @@ public final class SystemUtil {
 	public static long getAvailableInternalMemorySize() {
 		long availableSpace = -1l;
 		try {
-			String path = Environment.getDataDirectory().getPath();// 获取 Android 数据目录
-			StatFs stat = new StatFs(path);// �?��模拟linux的df命令的一个类,获得SD卡和手机内存的使用情�?
-			long blockSize = stat.getBlockSize();// 返回 Int ，大小，以字节为单位，一个文件系�?
-			long availableBlocks = stat.getAvailableBlocks();// 返回 Int ，获取当前可用的存储空间
+			// 获取 Android 数据目录
+			String path = Environment.getDataDirectory().getPath();
+			// 模拟linux的df命令的一个类,获得SD卡和手机内存的使用情况
+			StatFs stat = new StatFs(path);
+			long blockSize = stat.getBlockSize();
+			long availableBlocks = stat.getAvailableBlocks();
+			// 返回 Int ，获取当前可用的存储空间
 			availableSpace = availableBlocks * blockSize;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -393,9 +375,11 @@ public final class SystemUtil {
 		long size = 0;
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		List<ActivityManager.RunningAppProcessInfo> runapps = activityManager.getRunningAppProcesses();
-		for (ActivityManager.RunningAppProcessInfo runapp : runapps) { // 遍历运行中的程序
-			if (packageName.equals(runapp.processName)) {// 得到程序进程名，进程名一般就是包名，但有些程序的进程名并不对应一个包�?
-				// 返回指定PID程序的内存信息，可以传�?多个PID，返回的也是数组型的信息
+		// 遍历运行中的程序
+		for (ActivityManager.RunningAppProcessInfo runapp : runapps) {
+			// 得到程序进程名，进程名一般就是包名，但有些程序的进程名并不对应一个包名
+			if (packageName.equals(runapp.processName)) {
+				// 返回指定PID程序的内存信息，可以传多个PID，返回的也是数组型的信息
 				Debug.MemoryInfo[] processMemoryInfo = activityManager.getProcessMemoryInfo(new int[]{runapp.pid});
 				// 得到内存信息中已使用的内存，单位是K
 				size = processMemoryInfo[0].getTotalPrivateDirty() * 1024;
@@ -419,9 +403,11 @@ public final class SystemUtil {
 	/** 获取手机总内存，单位为byte */
 	public static long getTotalMemory() {
 		long size = 0;
-		String path = "/proc/meminfo";// 系统内存信息文件
+		// 系统内存信息文件
+		String path = "/proc/meminfo";
 		try {
-			String totalMemory = FileUtil.readProperties(path, "MemTotal", null);// 读出来是带单位kb的，并且单位前有空格，所以去掉最后三�?
+			// 读出来是带单位kb的，并且单位前有空格，所以去掉最后三位
+			String totalMemory = FileUtil.readProperties(path, "MemTotal", null);
 			if (!StringUtil.isEmpty(totalMemory) && totalMemory.length() > 3) {
 				size = Long.valueOf(totalMemory.substring(0, totalMemory.length() - 3)) * 1024;
 			}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prompt_empty">暂无数据。</string>
+    <string name="prompt_error">加载失败！</string>
+    <string name="prompt_loading">加载中…</string>
+</resources>

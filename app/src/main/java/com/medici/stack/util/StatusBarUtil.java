@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.cnbi.ic9.R;
+import com.medici.stack.R;
 
 /**
  * Created by Jaeger on 16/2/14.
@@ -25,8 +25,8 @@ import com.cnbi.ic9.R;
 public final class StatusBarUtil {
 
     public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
-    private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbarutil_fake_status_bar_view;
-    private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.statusbarutil_translucent_view;
+    private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.status_bar_util_fake_status_bar_view;
+    private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.status_bar_util_translucent_view;
     private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
 
     /**

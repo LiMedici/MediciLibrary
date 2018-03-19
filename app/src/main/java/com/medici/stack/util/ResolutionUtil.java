@@ -8,7 +8,9 @@ import android.view.WindowManager;
 import java.text.DecimalFormat;
 
 /**
- * 屏幕分辨率计算工具
+ * @author cnbilzh
+ * @time 2017/12/05 15:25
+ * @desc 屏幕分辨率计算工具
  */
 public class ResolutionUtil {
     private static volatile ResolutionUtil instance;

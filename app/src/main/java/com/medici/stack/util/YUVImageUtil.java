@@ -79,7 +79,7 @@ public final class YUVImageUtil {
             nWidth = imageWidth;
             nHeight = imageHeight;
             wh = imageWidth * imageHeight;
-            uvHeight = imageHeight >> 1;// uvHeight = height / 2
+            uvHeight = imageHeight >> 1;
         }
         // ??Y
         int k = 0;

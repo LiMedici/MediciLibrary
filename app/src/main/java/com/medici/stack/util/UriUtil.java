@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
 
-import com.cnbi.ic9.util.tool.blankj.EncryptUtil;
+import com.medici.stack.util.blankj.EncryptUtil;
 
 /**
  * ***************************************
@@ -59,8 +59,8 @@ public final class UriUtil {
      */
     public static String getRealPathFromUri(@NonNull Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;
-        if (sdkVersion < 11) return getRealPathFromUri_BelowApi11(uri);
-        if (sdkVersion < 19) return getRealPathFromUri_Api11To18(uri);
+        if (sdkVersion < Build.VERSION_CODES.HONEYCOMB) return getRealPathFromUri_BelowApi11(uri);
+        if (sdkVersion < Build.VERSION_CODES.KITKAT) return getRealPathFromUri_Api11To18(uri);
         else return getRealPathFromUri_AboveApi19(uri);
     }
 
@@ -79,7 +79,7 @@ public final class UriUtil {
         String selection = MediaStore.Images.Media._ID + "=?";
         String[] selectionArgs = {id};
 
-        Cursor cursor = UIUtil.getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,//
+        Cursor cursor = UIUtil.getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 projection, selection, selectionArgs, null);
         int columnIndex = cursor.getColumnIndex(projection[0]);
         if (cursor.moveToFirst()) filePath = cursor.getString(columnIndex);
