@@ -17,18 +17,17 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author cnbilzh
- * @Desc MVVM架构 基类Activity
+ * @desc MVVM架构 基类Activity
  */
 public abstract class ViewModelActivity<ViewModel extends BaseViewModel>
         extends ToolbarActivity implements BaseContract.View<ViewModel> {
 
     protected ViewModel mViewModel;
 
-    @Override
     @CallSuper
-    protected void initView() {
-        super.initView();
+    @Override
+    protected void initWidget() {
+        super.initWidget();
         // 初始化ViewModel
         initViewModel();
         // 观察ViewModel Loading状态的变化并与生命周期绑定

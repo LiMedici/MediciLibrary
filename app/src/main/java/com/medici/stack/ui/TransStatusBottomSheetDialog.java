@@ -13,12 +13,7 @@ import com.medici.stack.util.blankj.ScreenUtil;
 /**
  * ***************************************
  *
- * @desc:为了解决顶部状态栏变黑而写的TransStatusBottomSheetDialog
- * @author：李宗好
- * @time:2017/12/18 0018 11:24
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
+ * @desc: 为了解决顶部状态栏变黑而写的TransStatusBottomSheetDialog
  *
  * ***************************************
  */

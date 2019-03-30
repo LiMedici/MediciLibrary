@@ -8,12 +8,7 @@ import android.os.PowerManager;
 
 /**
  * ***************************************
- * desc:锁屏，开屏，解锁监听的工具类
- * author：李宗好
- * time: 2017/11/20 0020 10:02
- * email：lzh@cnbisoft.com
- * version：
- * history:
+ * @desc: 锁屏，开屏，解锁监听的工具类
  * ***************************************
  */
 public class ScreenReceiverUtil {

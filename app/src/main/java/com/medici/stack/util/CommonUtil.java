@@ -1,9 +1,9 @@
 package com.medici.stack.util;
 
+import com.orhanobut.logger.Logger;
+
 /**
  * @desc: 防手贱Util
- * @author：李宗好 on 2017/5/9 0009 09:30
- * @email：lzh@cnbisoft.com
  */
 public class CommonUtil {
 
@@ -25,7 +25,7 @@ public class CommonUtil {
         long time = System.currentTimeMillis();
         long timeD = time - lastClickTime;
         if ( 0 < timeD && timeD < DELAY_TIME) {
-            LogUtil.i(CommonUtil.class,"防手贱,没处理事件");
+            Logger.w("防手贱,没处理事件");
             return true;
         }
         //发生了响应,就重新计时

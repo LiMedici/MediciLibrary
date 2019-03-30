@@ -4,11 +4,6 @@ package com.medici.stack.model.ack;
  * ***************************************
  *
  * @desc: ACK确认报文的Model
- * @author：李宗好
- * @time: 2018/1/16 0016 15:50
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */

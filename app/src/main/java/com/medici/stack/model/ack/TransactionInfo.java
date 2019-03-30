@@ -2,10 +2,7 @@ package com.medici.stack.model.ack;
 
 
 /**
- * 要处理的请求的事物信息
- * @Desc TODO
- * @author 李宗好
- * @time:2017年2月20日下午4:48:39
+ * @desc 要处理的请求的事物信息
  */
 public class TransactionInfo {
 	

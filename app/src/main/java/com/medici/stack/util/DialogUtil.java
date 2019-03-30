@@ -15,8 +15,6 @@ import com.medici.stack.R;
 
 /**
  * @Desc DialogUtil 弹窗遮罩的作用
- * @author cnbilzh
- * @time:2017年2月22日下午2:23:41
  */
 public class DialogUtil {
 

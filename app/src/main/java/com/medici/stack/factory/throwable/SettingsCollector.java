@@ -13,12 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * desc:在Android中,许多的系统属性都是在系统设置中进行设置的,比如蓝牙,Wi-Fi的状态
- *      当前的首选语言,屏幕亮度等。这些信息存放在数据库中.对这些数据库的读写操作对应
- *      着Android SDK中的Settings类,我们对系统设置的读写本质上就是对这些数据库表的操作
- * author：李宗好
- * time: 2017/7/5 0005 15:49
- * email：lzh@cnbisoft.com
+ * 在Android中,许多的系统属性都是在系统设置中进行设置的,比如蓝牙,Wi-Fi的状态
+ * 当前的首选语言,屏幕亮度等。这些信息存放在数据库中.对这些数据库的读写操作对应
+ * 着Android SDK中的Settings类,我们对系统设置的读写本质上就是对这些数据库表的操作
  */
 
 public class SettingsCollector {

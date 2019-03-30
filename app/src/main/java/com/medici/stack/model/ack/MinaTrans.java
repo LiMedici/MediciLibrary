@@ -6,9 +6,7 @@ import java.util.Map;
 
 
 /**
- * @Desc 专门用来处理事物的类
- * @author 李宗好
- * @time:2017年2月20日下午6:10:39
+ * @desc 专门用来处理事物的类
  */
 public class MinaTrans {
 

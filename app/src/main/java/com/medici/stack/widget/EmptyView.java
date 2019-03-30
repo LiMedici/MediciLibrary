@@ -16,8 +16,8 @@ import com.medici.stack.widget.convention.PlaceHolderView;
 import net.qiujuer.genius.ui.widget.Loading;
 
 /**
- * @desc 简单的占位控件,实现了显示一个空的图片显示,可以和MVP or MVVM配合显示没有数据，正在加载等状态
- * @author cnbilzh
+ * @desc 简单的占位控件,实现了显示一个空的图片显示
+ * 可以和MVP or MVVM配合显示没有数据，正在加载等状态
  */
 public class EmptyView extends LinearLayout implements PlaceHolderView {
     private ImageView mEmptyImg;

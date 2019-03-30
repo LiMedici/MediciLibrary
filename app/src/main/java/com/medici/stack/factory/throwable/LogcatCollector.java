@@ -15,11 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * desc:捕获Logcat日志的好处是可以清楚得知道Crash发生前后的上下文,对于准确定位Crash来说
- *      提供了更完备的信息
- * author：李宗好
- * time: 2017/7/7 0007 14:02
- * ic_email_icon：lzh@cnbisoft.com
+ * 捕获Logcat日志的好处是可以清楚得知道Crash发生前后的上下文
+ * 对于准确定位Crash来说提供了更完备的信息
  */
 public class LogcatCollector {
 

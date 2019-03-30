@@ -11,11 +11,6 @@ import android.view.ViewGroup;
  * ***************************************
  *
  * @desc: 允许添加头布局,尾布局的Adapter,MVC,MVP架构中推荐使用
- * @author：李宗好
- * @time: 2018/1/22 0022 20:15
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */

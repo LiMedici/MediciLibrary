@@ -125,7 +125,21 @@
 
     </style>
 
+    <style name="AppTheme.Dialog.InputMode" parent="AppTheme.Dialog">
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+    </style>
+
     <style name="AppTheme.Dialog.Alert" parent="AppTheme.Dialog.Alert.Base">
+
+    </style>
+
+    <!--修改TabLayout的字体主题-->
+    <style name="AppTheme.TabLayout.TextAppearance.Base" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AppTheme.TabLayout.TextAppearance" parent="AppTheme.TabLayout.TextAppearance.Base">
 
     </style>
 
@@ -136,6 +150,13 @@
         <!-- dialog的整个屏幕的背景是否有遮障层  当设置这个最后时，上边两行不起作用-->
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <!-- 中间渐显现弹窗style -->
+    <style name="AnimFade" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
 
     <!--1像素页面的Style-->
     <style name="SingleActivityStyle" parent="AppTheme">
@@ -158,11 +179,5 @@
         <!-- 禁用窗口的预览动画-->
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowNoDisplay">false</item>
-    </style>
-
-    <!-- 中间渐显现弹窗style -->
-    <style name="AnimFade" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/fade_in</item>
-        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 </resources>

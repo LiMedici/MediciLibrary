@@ -112,7 +112,7 @@ public class Application extends android.app.Application {
 					.showThreadInfo(true)
 					.methodCount(2)
 					.methodOffset(5)
-					.tag("CloudBrainPower")
+					.tag("MediciLibrary")
 					.build();
 
 			Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));

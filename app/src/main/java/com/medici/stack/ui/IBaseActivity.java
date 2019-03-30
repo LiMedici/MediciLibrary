@@ -15,17 +15,12 @@ import java.util.List;
 
 /**
  * ***************************************
+ *
  * @desc:技术堆栈Activity基类
- * @author：李宗好
- * @time: 2017/11/13 0013 10:45
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
+ *
  * ***************************************
  */
-public abstract class IBaseActivity extends AppCompatActivity {
-
-    private static final String TAG = IBaseActivity.class.getCanonicalName();
+public abstract class IBaseActivity extends AppCompatActivity{
 
     protected BaseData m;
 
@@ -36,22 +31,22 @@ public abstract class IBaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         m = new BaseData(this);
-        Logger.d(this.getClass().getCanonicalName()+" ======== onCreate");
+        Logger.d("%s ======== onCreate",this.getClass().getCanonicalName());
 
-        Logger.i(this.getClass().getCanonicalName()+" ======== initWindow");
+        Logger.i("%s ======== initWindow",this.getClass().getCanonicalName());
         initWindow();
 
-        Logger.i(this.getClass().getCanonicalName()+" ======== initArgs");
+        Logger.i("%s ======== initArgs",this.getClass().getCanonicalName());
         if(initArgs(getIntent().getExtras())){
 
             setContentView();
 
-            Logger.i(this.getClass().getCanonicalName()+" ======== initView");
-            initView();
-            Logger.i(this.getClass().getCanonicalName()+" ======== initData");
+            Logger.i("%s ======== initBefore",this.getClass().getCanonicalName());
+            initBefore();
+            Logger.i("%s ======== initWidget",this.getClass().getCanonicalName());
+            initWidget();
+            Logger.i("%s ======== initData",this.getClass().getCanonicalName());
             initData();
-            Logger.i(this.getClass().getCanonicalName()+" ======== initListener");
-            initListener();
         }else{
             finish();
         }
@@ -88,19 +83,25 @@ public abstract class IBaseActivity extends AppCompatActivity {
     protected abstract int getContentLayoutId();
 
     /**
+     * 初始化监听
+     */
+    protected  void initBefore(){
+
+    }
+
+    /**
      * 初始化View
      */
-    protected abstract void initView();
+    protected void initWidget(){
+
+    }
 
     /**
      * 初始化数据
      */
-    protected abstract void initData();
+    protected void initData(){
 
-    /**
-     * 初始化监听
-     */
-    protected abstract void initListener();
+    }
 
     /**
      * 设置占位布局
@@ -135,39 +136,39 @@ public abstract class IBaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Logger.d(TAG+" ======== onStart");
+        Logger.d("%s ======== onStart",this.getClass().getCanonicalName());
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.d(TAG+" ======== onRestart");
+        Logger.d("%s ======== onRestart",this.getClass().getCanonicalName());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Logger.d(TAG+" ======== onResume");
+        Logger.d("%s ======== onResume",this.getClass().getCanonicalName());
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Logger.d(TAG+" ======== onPause");
+        Logger.d("%s ======== onPause",this.getClass().getCanonicalName());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Logger.d(TAG+" ======== onStop");
+        Logger.d("%s ======== onStop",this.getClass().getCanonicalName());
     }
 
     @Override
     @CallSuper
     protected void onDestroy() {
         super.onDestroy();
-        Logger.d(TAG+" ======== onDestroy");
+        Logger.d("%s ======== onDestroy",this.getClass().getCanonicalName());
         m.release();
     }
 

@@ -6,10 +6,6 @@ import com.medici.stack.factory.presenter.BaseContract;
 import com.medici.stack.factory.presenter.BasePresenter;
 import com.medici.stack.util.UIUtil;
 
-/**
- * @author qiujuer Email:qiujuer@live.cn
- * @version 1.0.0
- */
 public abstract class PresenterFragment<Presenter extends BasePresenter> extends IBaseFragment
         implements BaseContract.View<Presenter> {
 

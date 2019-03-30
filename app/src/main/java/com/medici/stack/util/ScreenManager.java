@@ -60,7 +60,7 @@ public class ScreenManager {
      * 启动SinglePixelActivity
      */
     public void startActivity(){
-        Logger.w(TAG,"准备启动SinglePixelActivity...");
+        Logger.i("准备启动SinglePixelActivity...");
         Intent intent = new Intent(mContext,SinglePixelActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ActivityUtil.startActivity(intent);
@@ -70,7 +70,7 @@ public class ScreenManager {
      * 结束SinglePixelActivity
      */
     public void finishActivity(){
-        Logger.w(TAG,"准备结束SinglePixelActivity...");
+        Logger.i("准备结束SinglePixelActivity...");
         if(mActivityRef != null){
             Activity mActivity = mActivityRef.get();
             if(mActivity != null){

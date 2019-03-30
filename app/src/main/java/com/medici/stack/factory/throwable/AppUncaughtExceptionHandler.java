@@ -30,7 +30,7 @@ public class AppUncaughtExceptionHandler implements Thread.UncaughtExceptionHand
         //CRASH堆栈信息
         final String stacktraceAsString = result.toString();
 
-        Logger.e("ExceptionHandler",stacktraceAsString);
+        Logger.e(stacktraceAsString);
 
         IOUtil.closeIO(printWriter);
         IOUtil.closeIO(result);

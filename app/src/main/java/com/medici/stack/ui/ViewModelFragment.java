@@ -17,8 +17,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author cnbilzh
- * @version MVVM架构 基类Fragment
+ * @desc MVVM架构 基类Fragment
  */
 public abstract class ViewModelFragment<ViewModel extends BaseViewModel>
         extends IBaseFragment implements BaseContract.View<ViewModel> {
@@ -32,14 +31,14 @@ public abstract class ViewModelFragment<ViewModel extends BaseViewModel>
         initViewModel();
     }
 
-    @Override
     @CallSuper
-    protected void initView() {
+    @Override
+    protected void initWidget() {
+        super.initWidget();
         // 观察ViewModel Loading状态的变化并与生命周期绑定
         mViewModel.getLoadingEvent().observe(this,new LoadingObserver());
         mViewModel.getWarningMessage().observe(this,new WarningObserver());
     }
-
 
     @Override
     /**

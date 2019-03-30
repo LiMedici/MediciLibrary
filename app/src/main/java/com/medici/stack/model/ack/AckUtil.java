@@ -4,11 +4,6 @@ package com.medici.stack.model.ack;
  * ***************************************
  *
  * @desc: 自定义回调函数,主要用作Socket的通信确认回调
- * @author：李宗好
- * @time: 2018/1/15 0015 20:53
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */

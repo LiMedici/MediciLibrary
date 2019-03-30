@@ -11,9 +11,7 @@ import android.widget.FrameLayout;
 
 
 /**
- * desc 下拉回退的Widget
- * Created by zsj on 2015/11/1 0001.
- * reference pull-back-layout
+ * @desc 下拉回退的Widget
  */
 public class PullBackLayout extends FrameLayout {
 

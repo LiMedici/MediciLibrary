@@ -14,10 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * desc: 将Json转换成Map和List对象的TypeAdapter
- * author：李宗好
- * time: 2017/06/14 15:36
- * email：lzh@cnbisoft.com
+ * @desc: 将Json转换成Map和List对象的TypeAdapter
  */
 public class ObjectTypeAdapter extends TypeAdapter {
 
@@ -65,7 +62,6 @@ public class ObjectTypeAdapter extends TypeAdapter {
                 // 判断数字是否为整数值
                 long lngNum = (long) dbNum;
                 if (dbNum == lngNum) {
-                    //IC9项目都是用int来接收的。
                     if(lngNum == new Long(lngNum).intValue()){
                         return new Long(lngNum).intValue();
                     }

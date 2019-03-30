@@ -3,12 +3,10 @@ package com.medici.stack.model.ack;
 /**
  * ***************************************
  *
- * @desc:
- * @author：李宗好
- * @time: 2018/1/16 0016 09:29
- * @email：lzh@cnbisoft.com
- * @version：
- * @history: ***************************************
+ * @desc: 任务的生命周期管理者
+ *
+ *
+ * ***************************************
  */
 public class ObserverDisposable implements Disposable{
 

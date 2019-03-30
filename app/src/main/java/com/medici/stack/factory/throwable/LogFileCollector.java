@@ -16,11 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * desc:将重要的日志信息有选择的存放到内部存储或者外部存储的某个Log文件中,当发生Crash时,也可以
- *      收集这个Log文件中的内容并上传到服务器,帮助问题的分析和定位。
- * author：李宗好
- * time: 2017/7/7 0007 15:37
- * email：lzh@cnbisoft.com
+ * 将重要的日志信息有选择的存放到内部存储或者外部存储的某个Log文件中,当发生Crash时,也可以
+ * 收集这个Log文件中的内容并上传到服务器,帮助问题的分析和定位。
  */
 public class LogFileCollector {
 

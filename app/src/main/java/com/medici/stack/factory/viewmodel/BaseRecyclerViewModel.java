@@ -12,9 +12,8 @@ import java.util.List;
 
 /**
  *
- * @author cnbilzh
- * @time 2017/12/05 16:08
  * @desc 对RecyclerView进行的一个简单的ViewModel封装
+ *
  */
 public class BaseRecyclerViewModel<ViewModel, View extends BaseContract.RecyclerView>
         extends BaseViewModel<View> {
@@ -61,15 +60,7 @@ public class BaseRecyclerViewModel<ViewModel, View extends BaseContract.Recycler
 
         // 改变数据集合并不通知界面刷新
         adapter.getItems().clear();
-        Logger.e("users next new list size:"+dataList.size());
         adapter.getItems().addAll(dataList);
-
-        // TODO 先刷新解决问题 更新RecyclerView数据时，需要保证外部数据集和内部数据集实时保持一致
-        // 经过测试,是重复刷新的问题,虽然暂时解决,但是LiveData 还有可能去多次回调的场景
-        // 例如数据多次更改,多次PostValue
-        // 多次切换UI 也会发生这个异常
-        adapter.notifyDataSetChanged();
-
         // 通知界面刷新占位布局
         view.onAdapterDataChanged();
 

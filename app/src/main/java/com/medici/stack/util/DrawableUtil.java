@@ -25,10 +25,10 @@ import java.lang.reflect.Field;
 
 /**
  * @desc Drawable工具类
- * @author 李宗好
- * @time:2016年12月15日 下午2:00:22
  */
-public class DrawableUtil {
+public final class DrawableUtil {
+
+	private DrawableUtil(){}
 
 	/**
 	 * 创建背景图片

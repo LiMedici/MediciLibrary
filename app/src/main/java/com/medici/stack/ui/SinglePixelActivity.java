@@ -11,22 +11,12 @@ import com.orhanobut.logger.Logger;
 
 /**
  * @desc 1像素的Activity
- * @author cnbilzh
  */
 public class SinglePixelActivity extends ToolbarActivity {
-
-    public static final String PIXEL_KEY = "1像素惨案";
-
-    private static final String TAG = "SinglePixelActivity";
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_single_pixel;
-    }
-
-    @Override
-    protected void initView() {
-        super.initView();
     }
 
     @Override
@@ -46,13 +36,8 @@ public class SinglePixelActivity extends ToolbarActivity {
     }
 
     @Override
-    protected void initListener() {
-
-    }
-
-    @Override
     protected void onDestroy() {
-        Logger.w(TAG,"onDestroy--->1像素保活被终止");
+        Logger.w("%s ======= 1像素保活被终止",this.getClass().getCanonicalName());
         /** APP被干掉了，我要重启它
         if(!ActivityUtil.isActivityExistsInStack(this)){
             Intent intentAlive = new Intent(this, SplashActivity.class);

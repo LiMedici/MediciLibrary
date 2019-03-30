@@ -4,12 +4,17 @@ import android.util.Log;
 
 import com.medici.stack.R;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @desc 日志工具类
- * @author 龚佳新
- * @time:2016年12月12日 下午12:31:32
  */
 public class LogUtil {
+
+	private static LogUtil INSTANCE = null;
+
+	private LogUtil(){}
 
 	/**
 	 * 打开关闭log打印的闸
@@ -30,26 +35,28 @@ public class LogUtil {
 		logBrake = false;
 	}
 
-	/**
-	 * 获取log打印tag
-	 * @param cls
-	 * @return
-	 */
-	public static String makeLogTag(Class cls) {
+	private static String makeLogTag(Class cls) {
 		return UIUtil.getString(R.string.app_name) + cls.getSimpleName();
 	}
 
 	public static LogUtil getInstance(){
-		return new LogUtil();
+		if(INSTANCE == null) {
+			synchronized (LogUtil.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new LogUtil();
+				}
+			}
+		}
+		return INSTANCE;
 	}
-	
+
 	/**
-	 * 打印错误日志
-	 * @param eLog
+	 * 打印消息日志
+	 * @param dLog
 	 */
-	public static void e(Class cls,String eLog){
+	public static void d(Class cls,String dLog){
 		if(logBrake)
-		Log.e(makeLogTag(cls), eLog);
+			Log.d(makeLogTag(cls), dLog);
 	}
 	
 	/**
@@ -68,6 +75,15 @@ public class LogUtil {
 	public static void w(Class cls,String wLog){
 		if(logBrake)
 		Log.w(makeLogTag(cls), wLog);
+	}
+
+	/**
+	 * 打印错误日志
+	 * @param eLog
+	 */
+	public static void e(Class cls,String eLog){
+		if(logBrake)
+			Log.e(makeLogTag(cls), eLog);
 	}
 	
 }

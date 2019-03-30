@@ -9,11 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * desc:对Camera开发设置PreviewSize和PictureSize的工具类
- *      防止设置不正常的分辨率出现setParamter的异常错误
- * author：李宗好
- * time: 2017/8/10 0010 09:41
- * email：lzh@cnbisoft.com
+ * @desc:对Camera开发设置PreviewSize和PictureSize的工具类
+ *      防止设置不正常的分辨率出现setParameter的异常错误
  */
 public class CameraUtil {
 
@@ -32,7 +29,7 @@ public class CameraUtil {
         int i = 0;
         for(Size size:list){
             if((size.width >= width) && equalRate(size, 1.55f)){
-                Logger.w("最终设置预览尺寸:w = " + size.width + "h = " + size.height);
+                Logger.i("最终设置预览尺寸:w = " + size.width + "h = " + size.height);
                 break;
             }
             i++;
@@ -54,7 +51,7 @@ public class CameraUtil {
         int i = 0;
         for(Size size:list){
             if((size.width >= width) && equalRate(size, 1.55f)){
-                Logger.w("最终设置图片尺寸:w = " + size.width + "h = " + size.height);
+                Logger.i("最终设置图片尺寸:w = " + size.width + "h = " + size.height);
                 break;
             }
             i++;

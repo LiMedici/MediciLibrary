@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @Desc 检查事物集合事物是否过时,如果过时就删除
- * @author 李宗好
- * @time:2017年2月20日下午6:00:18
+ * @desc 检查事物集合事物是否过时,如果过时就删除
  */
 public class OutThread extends Thread {
 	

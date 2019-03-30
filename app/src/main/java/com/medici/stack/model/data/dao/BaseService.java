@@ -15,8 +15,6 @@ import java.util.Map.Entry;
 
 /**
  * @Desc 处理数据库的增删改查
- * @author 李宗好
- * @time:2017年2月15日上午11:00:14
  */
 public class BaseService {
 

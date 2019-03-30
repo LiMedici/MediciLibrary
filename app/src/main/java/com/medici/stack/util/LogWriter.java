@@ -32,8 +32,7 @@ public class LogWriter {
 	/**
 	 * 打开log打印
 	 * 
-	 * @param path
-	 *            打印文件的存储路径
+	 * @param path 打印文件的存储路径
 	 * @return 打印log对象
 	 * @throws IOException
 	 */
@@ -65,7 +64,7 @@ public class LogWriter {
 	/**
 	 * 打印log到文件中
 	 * 
-	 * @param log
+	 * @param log log文本
 	 * @throws IOException
 	 */
 	public void print(String log) throws IOException {
@@ -77,8 +76,8 @@ public class LogWriter {
 
 	/**
 	 * 打印log到文件中 能看到是哪个类打印的日志
-	 * @param cls
-	 * @param log
+	 * @param cls 类对象
+	 * @param log 日志文本
 	 * @throws IOException
 	 */
 	public void print(Class cls, String log) throws IOException {

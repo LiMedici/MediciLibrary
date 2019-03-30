@@ -18,9 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 李宗好
- * @Desc Gson工具类
- * @time:2017年3月8日上午9:07:26
+ * @desc Google Json工具类
  */
 public class GsonUtil {
 
@@ -67,9 +65,9 @@ public class GsonUtil {
     }
 
     /**
-     * 返回可使用的gson对象
+     * 返回可使用的Google Json对象
      *
-     * @return Gson
+     * @return Google Json
      */
     public static Gson gson() {
         return gson;
@@ -79,8 +77,8 @@ public class GsonUtil {
     /**
      * 将一个javaBean生成对应的Json数据
      *
-     * @param obj
-     * @return
+     * @param obj 对象
+     * @return Json数据
      */
     public static String beanToJson(Object obj) {
         return gson.toJson(obj);
@@ -89,65 +87,25 @@ public class GsonUtil {
     /**
      * json字符串转bean对象
      *
-     * @param json
-     * @param clx
-     * @return
+     * @param json Json数据
+     * @param clx 实体类Class对象
+     * @return 泛型实体
      */
     public static <T> T jsonToBean(String json, Class<T> clx) {
-
         return gson.fromJson(json, clx);
     }
 
     /**
      * 对象转实体
      *
-     * @param object
-     * @param clx
-     * @return
+     * @param object 对象
+     * @param clx 实体类Class对象
+     * @return 泛型实体
      */
-    public static <T> T objToModel(Object object, Class<T> clx) {
+    public static <T> T objToBean(Object object, Class<T> clx) {
         String objectStr = beanToJson(object);
         T t = jsonToBean(objectStr, clx);
         return t;
-    }
-
-    /**
-     * @param json
-     * @param clx
-     * @return ArrayList集合
-     */
-    public static <T> ArrayList<T> jsonToList(String json, Class<T> clx) {
-        Type type = new TypeToken<ArrayList<JsonObject>>() {
-        }.getType();
-        ArrayList<JsonObject> jsonObjects = gson.fromJson(json, type);
-
-        ArrayList<T> arrayList = new ArrayList<>();
-        for (JsonObject jsonObject : jsonObjects) {
-            arrayList.add(gson.fromJson(jsonObject, clx));
-        }
-        return arrayList;
-    }
-
-    /**
-     * JSON转Map
-     *
-     * @param json
-     * @param clx
-     * @return
-     */
-    public static <T> Map jsonToMap(String json, Class<T> clx) {
-        Map<String, T> resultMap = new HashMap();
-        Map<String, Object> map = jsonToBean(json, Map.class);
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            String mapStr = beanToJson(value);
-            T t = jsonToBean(mapStr, clx);
-
-            resultMap.put(key, t);
-        }
-        return resultMap;
     }
 
     /**

@@ -9,11 +9,6 @@ import com.medici.stack.widget.recycler.RecyclerBindingAdapter;
  * ***************************************
  *
  * @desc: MVVM 架构的公共基本契约,尽量的取消接口回调,实现双向binding
- * @author：李宗好
- * @time: 2017/12/7 0007 16:47
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */

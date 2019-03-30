@@ -7,10 +7,6 @@ import com.medici.stack.factory.presenter.BaseContract;
 import com.medici.stack.factory.presenter.BasePresenter;
 import com.medici.stack.util.UIUtil;
 
-/**
- * @author qiujuer Email:qiujuer@live.cn
- * @version 1.0.0
- */
 public abstract class PresenterActivity<Presenter extends BasePresenter>
         extends ToolbarActivity implements BaseContract.View<Presenter> {
 
@@ -19,8 +15,8 @@ public abstract class PresenterActivity<Presenter extends BasePresenter>
     protected ProgressDialog mLoadingDialog;
 
     @Override
-    protected void initView() {
-        super.initView();
+    protected void initBefore() {
+        super.initBefore();
         // 初始化Presenter
         initPresenter();
     }

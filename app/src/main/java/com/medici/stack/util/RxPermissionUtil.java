@@ -12,11 +12,7 @@ import com.medici.stack.util.blankj.IntentUtil;
 import com.medici.stack.util.blankj.SpanUtil;
 
 /**
- * 
  * @desc 申请权限的Util 基于RxPermission
- * @author 李宗好
- * @time:2017年05月31日 下午14:56:00
- *
  */
 public final class RxPermissionUtil {
 
@@ -26,12 +22,6 @@ public final class RxPermissionUtil {
 	private RxPermissionUtil() {
 
 	}
-
-	/**
-	public static RxPermissions getInstance(Activity mActivity) {
-		RxPermissions rxPermissions = new RxPermissions(mActivity);
-		return rxPermissions;
-	}*/
 
 	/**
 	 * 跳转到应用设置详情页面

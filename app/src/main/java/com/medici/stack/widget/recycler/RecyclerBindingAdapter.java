@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author cnbilzh
  * @desc 集成Recycler Adapter,使用 DataBinding 实现数据绑定
  */
 public abstract class RecyclerBindingAdapter<Data>
@@ -186,8 +185,10 @@ public abstract class RecyclerBindingAdapter<Data>
      */
     public void replace(Collection<Data> dataList) {
         mDataList.clear();
-        if (dataList == null || dataList.size() == 0)
+        if (dataList == null || dataList.size() == 0){
+            notifyDataSetChanged();
             return;
+        }
         mDataList.addAll(dataList);
         notifyDataSetChanged();
     }

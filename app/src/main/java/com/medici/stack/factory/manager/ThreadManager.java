@@ -129,7 +129,7 @@ public final class ThreadManager {
 		}
 
 		/** 立刻关闭线程池，并且正在执行的任务也将会被中断 */
-		public void stop() {
+		public void shutdownNow() {
 			if (mPool != null && (!mPool.isShutdown() || mPool.isTerminating())) {
 				mPool.shutdownNow();
 			}
@@ -138,7 +138,7 @@ public final class ThreadManager {
 		/** 平缓关闭单任务线程池，但是会确保所有已经加入的任务都将会被执行完毕才关闭 */
 		public synchronized void shutdown() {
 			if (mPool != null && (!mPool.isShutdown() || mPool.isTerminating())) {
-				mPool.shutdownNow();
+				mPool.shutdown();
 			}
 		}
 	}

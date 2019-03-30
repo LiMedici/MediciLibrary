@@ -18,6 +18,9 @@
 
     <dimen name="actionBarElevationValue">2dp</dimen>
 
+    <!--分割线高度-->
+    <dimen name="horizontalDividerHeight">1dp</dimen>
+
     <!--名字字体的大小-->
     <dimen name="fontNameSize">15sp</dimen>
 </resources>

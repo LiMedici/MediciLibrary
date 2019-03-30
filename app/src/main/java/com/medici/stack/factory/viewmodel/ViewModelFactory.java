@@ -7,13 +7,9 @@ import android.support.annotation.CheckResult;
 
 /**
  * ***************************************
- *
- * @desc: ViewModel工厂, 用来生产ViewModel
- * @author：李宗好
- * @time: 2017/12/7 0007 16:27
- * @email：lzh@cnbisoft.com
- * @version：
- * @history: 因为组件化开发的原因, 不能够在create去使用上层业务的ViewModel
+ * <p>
+ * ViewModel工厂, 用来生产ViewModel
+ * 因为组件化开发的原因, 不能够在create去使用上层业务的ViewModel
  * <p>
  * ***************************************
  */

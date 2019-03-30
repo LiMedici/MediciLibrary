@@ -5,9 +5,6 @@ import android.os.CountDownTimer;
 /**
  * 倒计时，可用于验证码两次发送时间间距的倒计时
  * new TimeCount(6000, 1000, listener).start()
- *
- * @author Like
- * @version 1.0.0
  */
 public final class TimeCount extends CountDownTimer {
 

@@ -15,12 +15,9 @@ import com.medici.stack.util.blankj.EncryptUtil;
 
 /**
  * ***************************************
- * desc:从Uri转化为绝对路径的工具类
- * author：李宗好
- * time: 2017/11/15 0015 17:37
- * email：lzh@cnbisoft.com
- * version：
- * history:
+ *
+ * @desc: 从Uri转化为绝对路径的工具类
+ *
  * ***************************************
  */
 public final class UriUtil {

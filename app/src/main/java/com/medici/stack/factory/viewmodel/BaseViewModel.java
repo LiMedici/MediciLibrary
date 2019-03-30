@@ -9,16 +9,12 @@ import android.support.annotation.NonNull;
 /**
  * ***************************************
  *
- * @desc: 对ViewModel的简单封装
- * @author：李宗好
- * @time: 2017/12/7 0007 13:57
- * @email：lzh@cnbisoft.com
- * @version：
- * @history: T(View) 对象 不能够在官方组件VIEW MODEL 中使用,因为官方API 对ViewModel 做了缓存处理。
- *           当View被重构的时候,ViewModel 还是使用原来的对象,所有ViewModel的声明周期与View的生命
- *           周期是毫无关联的。所以我们要在ViewModel 中慎用 android.content.context下面的类。如果
- *           我们需要使用Application 可以继承AndroidViewModel 。如果需要清理资源,请重写ViewModel的
- *           onCleared 方法
+ * 对ViewModel的简单封装
+ * T(View) 对象 不能够在官方组件VIEW MODEL 中使用,因为官方API 对ViewModel 做了缓存处理。
+ * 当View被重构的时候,ViewModel 还是使用原来的对象,所有ViewModel的声明周期与View的生命
+ * 周期是毫无关联的。所以我们要在ViewModel 中慎用 android.content.context下面的类。如果
+ * 我们需要使用Application 可以继承AndroidViewModel 。如果需要清理资源,请重写ViewModel的
+ * onCleared 方法
  *
  * ***************************************
  */

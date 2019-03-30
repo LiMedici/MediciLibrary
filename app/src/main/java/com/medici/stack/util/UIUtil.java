@@ -26,8 +26,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author cnbilzh
- * @time 2017/12/05 15:29
  * @desc UI相关的功能方法
  */
 public final class UIUtil {
@@ -189,7 +187,7 @@ public final class UIUtil {
 		return getResources().getColor(resId);
 	}
 
-	/** 获取颜色选择器*/
+	/** 获取颜色选择器 */
 	@RequiresApi(api = Build.VERSION_CODES.M)
     public static ColorStateList getColorStateList(int resId) {
 		return getResources().getColorStateList(resId,null);
@@ -234,21 +232,9 @@ public final class UIUtil {
         if (isRunInMainThread()) {
             ToastUtil.showShort(str);
         } else {
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    ToastUtil.showShort(str);
-                }
-            });
+            post(()->ToastUtil.showShort(str));
         }
     }
-
-	private static void showToast(String str) {
-		Activity frontActivity = (Activity) getTopActivity();
-		if (frontActivity != null) {
-			Toast.makeText(frontActivity, str, Toast.LENGTH_LONG).show();
-		}
-	}
 }
 
 

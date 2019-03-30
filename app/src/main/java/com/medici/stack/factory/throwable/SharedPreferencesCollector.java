@@ -9,10 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * desc:某些类型的Crash依赖于应用的SharedPreferences中的某些信息项
- * author：李宗好
- * time: 2017/7/5 0005 15:25
- * email：lzh@cnbisoft.com
+ * 某些类型的Crash依赖于应用的SharedPreferences中的某些信息项
  */
 public class SharedPreferencesCollector {
 

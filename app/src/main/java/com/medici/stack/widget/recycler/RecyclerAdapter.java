@@ -184,8 +184,10 @@ public abstract class RecyclerAdapter<Data>
      */
     public void replace(Collection<Data> dataList) {
         mDataList.clear();
-        if (dataList == null || dataList.size() == 0)
+        if (dataList == null || dataList.size() == 0){
+            notifyDataSetChanged();
             return;
+        }
         mDataList.addAll(dataList);
         notifyDataSetChanged();
     }

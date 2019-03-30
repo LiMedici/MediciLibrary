@@ -14,11 +14,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * ***************************************
  *
  * @desc: 对LiveData的一层简单封装 空数据的call
- * @author：李宗好
- * @time: 2017/12/7 0007 17:14
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */
@@ -33,7 +28,7 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
     public void observe(LifecycleOwner owner, final Observer<T> observer) {
 
         if (hasActiveObservers()) {
-            Logger.w(TAG, "Multiple observers registered but only one will be notified of changes.");
+            Logger.w("Multiple observers registered but only one will be notified of changes.");
         }
 
         // Observe the internal MutableLiveData
@@ -57,9 +52,6 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
         super.setValue(t);
     }
 
-    /**
-     * Used for cases where T is Void, to make calls cleaner.
-     */
     @MainThread
     public void call() {
         setValue(null);

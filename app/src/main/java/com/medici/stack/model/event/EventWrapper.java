@@ -6,18 +6,13 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * 配合EventBus使用，可向指定class传值，可向同一Tag传值
- *
- * @author Like
- * @version 1.0.0
  */
 public class EventWrapper {
 
     public Object data; // 可以绑定的额外数据
     private String targetClassName; // 要传递的类名
-    private String fromClassName;
-    private String toClassName;
+    private String tag; // 请求Tag
     private Integer requestCode; // 请求码，功能等同与onActivityResult中的请求码
-    private String tag;
 
     public EventWrapper(Object data) {
         this.data = data;
@@ -45,6 +40,11 @@ public class EventWrapper {
     }
 
     public static boolean isMatch(EventWrapper event, Class<?> clazz,
+                                  int requestCode) {
+        return isMatch(event,clazz,requestCode,false);
+    }
+
+    public static boolean isMatch(EventWrapper event, Class<?> clazz,
                                   int requestCode, boolean block) {
         String thisClassName = clazz.getName();
         boolean isMatch = TextUtils
@@ -56,32 +56,20 @@ public class EventWrapper {
         return isMatch;
     }
 
-    public static boolean isMatch(EventWrapper event, Class<?> clazz,
-                                  int requestCode) {
-        String thisClassName = clazz.getName();
-        boolean isMatch = TextUtils
-                .equals(event.targetClassName, thisClassName)
-                && event.requestCode == requestCode;
-        if (isMatch) {
+    public static boolean isMatch(EventWrapper event, Class<?> clazz, String tag) {
+        return isMatch(event, clazz, tag, false);
+    }
+
+    public static boolean isMatch(EventWrapper event, Class<?> clazz, String tag, boolean block) {
+        boolean isMatch = (TextUtils.equals(event.tag, tag) && event.targetClassName.equals(clazz.getName()));
+        if (isMatch && block) {
             EventBus.getDefault().removeStickyEvent(event);
         }
         return isMatch;
     }
 
     public static boolean isMatch(EventWrapper event, String tag) {
-        boolean isMatch = TextUtils.equals(event.tag, tag);
-        if (isMatch) {
-            EventBus.getDefault().removeStickyEvent(event);
-        }
-        return isMatch;
-    }
-
-    public static boolean isMatch(EventWrapper event, Class<?> clazz, String tag) {
-        boolean isMatch = (TextUtils.equals(event.tag, tag) && event.targetClassName.equals(clazz.getName()));
-        if (isMatch) {
-            EventBus.getDefault().removeStickyEvent(event);
-        }
-        return isMatch;
+        return isMatch(event,tag,false);
     }
 
     public static boolean isMatch(EventWrapper event, String tag, boolean block) {

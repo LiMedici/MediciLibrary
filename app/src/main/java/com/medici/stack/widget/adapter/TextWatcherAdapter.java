@@ -4,7 +4,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 /**
- * @author cnbilzh
  * @desc 实现TextWatcher,用于监听EditText文本onTextChanged函数
  */
 public abstract class TextWatcherAdapter implements TextWatcher {

@@ -61,12 +61,12 @@ public class DefendManager {
                 Class<? extends Service> serviceClass = entry.getValue();
                 String runningServiceName = runningService.get(i).service.getClassName().toString();
                 if (runningServiceName.equals(serviceClass.getCanonicalName())) {
-                    Logger.v(runningServiceName+" ======= 正在运行");
+                    Logger.i(runningServiceName+"%s ======= 正在运行");
                     worked ++;
                 }
             }
         }
-        Logger.v("正在运行进程数 ======= " + worked);
+        Logger.i("正在运行进程数 ======= %d",worked);
         return worked == mClassMap.size();
 
     }

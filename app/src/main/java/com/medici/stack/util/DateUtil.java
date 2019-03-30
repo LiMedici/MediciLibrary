@@ -11,8 +11,6 @@ import java.util.Locale;
 /**
  * 
  * @desc 日期工具类
- * @author 李宗好
- * @time:2016年12月21日 下午3:46:05
  */
 public class DateUtil {
 

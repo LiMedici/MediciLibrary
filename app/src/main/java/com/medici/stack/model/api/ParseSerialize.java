@@ -6,11 +6,6 @@ import java.util.Map;
  * ***************************************
  *
  * @desc: 解析Model 到map的接口
- * @author：李宗好
- * @time: 2017/12/22 0022 09:53
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */

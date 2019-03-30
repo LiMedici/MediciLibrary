@@ -8,12 +8,7 @@ import android.support.annotation.StringRes;
 /**
  * ***************************************
  *
- * @desc: 提示消息的LiveData观察数据源
- * @author：李宗好
- * @time: 2017/12/7 0007 18:52
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
+ * @desc 提示消息的LiveData观察数据源
  *
  * ***************************************
  */

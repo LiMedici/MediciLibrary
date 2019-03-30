@@ -6,18 +6,14 @@ import android.support.v7.widget.Toolbar;
 
 import com.medici.stack.R;
 
-/**
- * @author cnbilzh
- * @time: 2017/12/05 16:57
- * @version 1.0.0
- */
 public abstract class ToolbarActivity extends IBaseActivity {
 
     protected Toolbar mToolbar;
 
-    @Override
     @CallSuper
-    protected void initView() {
+    @Override
+    protected void initWidget() {
+        super.initWidget();
         initToolbar((Toolbar) findViewById(R.id.toolbar));
     }
 

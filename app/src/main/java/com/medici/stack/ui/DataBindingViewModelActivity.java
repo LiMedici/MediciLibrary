@@ -18,18 +18,17 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author cnbilzh
- * @Desc MVVM+DataBinding架构 基类Activity
+ * @desc MVVM+DataBinding架构 基类Activity
  */
 public abstract class DataBindingViewModelActivity<ViewBinding extends ViewDataBinding,ViewModel extends BaseViewModel>
         extends DataBindingToolbarActivity<ViewBinding> implements BaseContract.View<ViewModel> {
 
     protected ViewModel mViewModel;
 
-    @Override
     @CallSuper
-    protected void initView() {
-        super.initView();
+    @Override
+    protected void initWidget() {
+        super.initWidget();
         // 初始化ViewModel
         initViewModel();
         // 观察ViewModel Loading状态的变化并与生命周期绑定

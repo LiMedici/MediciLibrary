@@ -1,9 +1,8 @@
 package com.medici.stack.model.data;
 
-import android.support.annotation.StringRes;
+import android.support.annotation.NonNull;
 
 /**
- * @author cnbilzh
  * @desc 数据源接口定义
  */
 public interface DataSource {
@@ -37,9 +36,9 @@ public interface DataSource {
     interface FailedCallback {
         /**
          * 数据加载失败, 网络请求失败
-         * @param strRes
+         * @param error 如果使用服务端返回的错误信息 {@link HttpTipError#httpMsgError == true}
          */
-        void onDataNotAvailable(@StringRes int strRes);
+        void onDataNotAvailable(@NonNull HttpTipError error);
     }
 
 

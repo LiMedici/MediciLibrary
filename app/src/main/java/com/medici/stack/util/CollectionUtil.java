@@ -11,11 +11,6 @@ import java.util.Set;
  * ***************************************
  *
  * @desc: 集合工具类
- * @author：李宗好
- * @time: 2017/12/26 0026 19:46
- * @email：lzh@cnbisoft.com
- * @version：
- * @history:
  *
  * ***************************************
  */
@@ -28,7 +23,6 @@ public class CollectionUtil {
      * @param <T>    Class
      * @return 转换完成后的数组
      */
-    @SuppressWarnings("unchecked")
     public static <T> T[] toArray(List<T> items, Class<T> tClass) {
         if (items == null || items.size() == 0)
             return null;
@@ -50,7 +44,6 @@ public class CollectionUtil {
      * @param <T>    Class
      * @return 转换完成后的数组
      */
-    @SuppressWarnings("unchecked")
     public static <T> T[] toArray(Set<T> items, Class<T> tClass) {
         if (items == null || items.size() == 0)
             return null;

@@ -10,10 +10,7 @@ import com.medici.stack.model.data.DataSource;
 import java.util.List;
 
 /**
- * 基础的仓库源的ViewModel定义
- *
- * @author qiujuer Email:qiujuer@live.cn
- * @version 1.0.0
+ * @desc 基础的仓库源的ViewModel定义
  */
 public abstract class BaseSourceViewModel<Data, ViewModel,
         Source extends BaseDataSource<Data>,

@@ -13,10 +13,6 @@ import com.medici.stack.util.blankj.SizeUtil;
  *
  * @desc: 由于ScrollToPosition滑动到指定Item,太突兀。所以该View实现了平滑的滑动到指定Item。
  *        并且扩展可以监听软键盘的弹出和收起,发起回调。
- * @author：medici
- * @time: 2018/1/19 0019 09:32
- * @version：
- * @history:
  *
  * ***************************************
  */

@@ -11,8 +11,6 @@ import android.view.View;
 
 /**
  * @Desc 周围位置列表的分割线
- * @author 李宗好
- * @time:2017年3月24日下午3:39:01
  */
 public class RecyclerItemDecoration extends RecyclerView.ItemDecoration {
 	

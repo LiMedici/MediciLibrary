@@ -16,34 +16,30 @@ import com.orhanobut.logger.Logger;
 
 /**
  * Fragment基类
- * @time 2016/12/12 16:59
- * @author Administrator
- *
  */
 public abstract class IBaseFragment extends Fragment {
 
-	private static final String TAG = IBaseFragment.class.getCanonicalName();
-
 	protected View mRootView = null;
+
+	protected PlaceHolderView mPlaceHolderView;
 
 	protected BaseData m;
 
-	protected PlaceHolderView mPlaceHolderView;
+	// 标示是否第一次初始化数据
+	protected boolean mIsFirstInitData = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Logger.d("%s ======== onCreate",this.getClass().getCanonicalName());
 		m = new BaseData(this);
-		Logger.d(TAG+" ======== onCreate");
 	}
 
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
-
-		Logger.d(TAG+" ======== onAttach");
-
-		Logger.d(TAG+" ======== initArgs");
+		Logger.d("%s ======== onAttach",this.getClass().getCanonicalName());
+		Logger.i("%s ======== initArgs",this.getClass().getCanonicalName());
 		// 初始化参数
 		initArgs(getArguments());
 
@@ -52,12 +48,12 @@ public abstract class IBaseFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		Logger.d(TAG+" ======== onStart");
+		Logger.d("%s ======== onStart",this.getClass().getCanonicalName());
 	}
 
 	@Override
 	public void onResume() {
-		Logger.d(TAG+" ======== onResume");
+		Logger.d("%s ======== onResume",this.getClass().getCanonicalName());
 		super.onResume();
 	}
 
@@ -69,6 +65,7 @@ public abstract class IBaseFragment extends Fragment {
 			// 初始化当前的跟布局，但是不在创建时就添加到container里边
 			View view = inflater.inflate(layId, container, false);
 			mRootView = view;
+			initWidget();
 		} else {
 			if (mRootView.getParent() != null) {
 				// 把当前Root从其父控件中移除
@@ -82,14 +79,14 @@ public abstract class IBaseFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		Logger.d(TAG+" ======== onPause");
+		Logger.d("%s ======== onPause",this.getClass().getCanonicalName());
 	}
 
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		Logger.d(TAG+" ======== onStop");
+		Logger.d("%s ======== onStop",this.getClass().getCanonicalName());
 	}
 
 	@LayoutRes
@@ -102,12 +99,14 @@ public abstract class IBaseFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		Logger.d(TAG+" ======== initView");
-		initView();
-		Logger.d(TAG+" ======== initData");
+		if (mIsFirstInitData) {
+			// 触发一次以后就不会触发
+			mIsFirstInitData = false;
+			// 触发
+			onFirstInit();
+		}
+		// 当View创建完成后初始化数据
 		initData();
-		Logger.d(TAG+" ======== initListener");
-		initListener();
 	}
 
 	/**
@@ -122,17 +121,23 @@ public abstract class IBaseFragment extends Fragment {
 	/**
 	 * 初始化View
 	 */
-	protected abstract void initView();
+	protected void initWidget(){
+		Logger.i("%s ======== initWidget",this.getClass().getCanonicalName());
+	}
 
 	/**
 	 * 初始化数据
 	 */
-	protected abstract void initData();
+	protected void initData(){
+		Logger.i("%s ======== initData",this.getClass().getCanonicalName());
+	}
 
 	/**
-	 * 初始化View各种监听
+	 * 当首次初始化数据的时候会调用的方法
 	 */
-	protected abstract void initListener();
+	protected void onFirstInit() {
+		Logger.i("%s ======== onFirstInit",this.getClass().getCanonicalName());
+	}
 
 	/**
 	 * 设置占位布局
@@ -156,14 +161,14 @@ public abstract class IBaseFragment extends Fragment {
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		Logger.d(TAG+" ======== onDestroyView");
+		Logger.d("%s ======== onDestroyView",this.getClass().getCanonicalName());
 	}
 
 	@Override
 	@CallSuper
 	public void onDestroy() {
 		super.onDestroy();
-		Logger.d(TAG+" ======== onDestroy");
+		Logger.d("%s ======== onDestroy",this.getClass().getCanonicalName());
 		m.release();
 		mRootView = null;
 	}
