@@ -5,9 +5,13 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.medici.stack.R;
+import com.medici.stack.util.UIUtil;
 
 /**
  * @Desc 周围位置列表的分割线
@@ -28,7 +32,13 @@ public class RecyclerItemDecoration extends RecyclerView.ItemDecoration {
 
     public RecyclerItemDecoration(Context context, int orientation) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = a.getDrawable(0);
+        // mutate 资源间不共享drawable状态
+        mDivider = a.getDrawable(0).mutate();
+        final Drawable mCompatDivider = DrawableCompat.wrap(mDivider);
+        if(mCompatDivider != null){
+            DrawableCompat.setTint(mCompatDivider,UIUtil.getColor(R.color.colorGary));
+        }
+
         a.recycle();
         setOrientation(orientation);
     }
