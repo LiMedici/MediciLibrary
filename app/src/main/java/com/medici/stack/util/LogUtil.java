@@ -35,7 +35,7 @@ public class LogUtil {
 		logBrake = false;
 	}
 
-	private static String makeLogTag(Class cls) {
+	public static String makeLogTag(Class cls) {
 		return UIUtil.getString(R.string.app_name) + cls.getSimpleName();
 	}
 
